@@ -11,18 +11,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKey("d"))
+        if (Input.GetKey("d") || Input.GetKey("right"))
         {
             rb.AddForce(new Vector2(1000 * Time.deltaTime, 0));
         }
-        if (Input.GetKey("a"))
+        if (Input.GetKey("a") || Input.GetKey("left"))
         {
             rb.AddForce(new Vector2(-1000 * Time.deltaTime, 0));
         }
-        if (Input.GetKey("w") && !jump)
+        if ((Input.GetKey("w") || Input.GetKey("up")) && !jump)
         {
             jump = true;
-            rb.AddForce(new Vector2(0, 400 * Time.deltaTime), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0, 500 * Time.deltaTime), ForceMode2D.Impulse);
         }
     }
 
