@@ -7,10 +7,19 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D rb;
     private bool jump;
+	
+	void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+		if (rb.velocity[1]<(0))
+		{
+			jump=true;
+		}
         if (Input.GetKey("d") || Input.GetKey("right"))
         {
             rb.AddForce(new Vector2(1000 * Time.deltaTime, 0));
@@ -25,9 +34,11 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(0, 500 * Time.deltaTime), ForceMode2D.Impulse);
         }
     }
-
+	
     void OnCollisionEnter2D()
     {
+		Debug.Log("Colliding");
+		
         jump = false;
     }
 }
