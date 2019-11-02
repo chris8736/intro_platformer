@@ -62,7 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\PlaceholderMovement.cs" />
+    <Compile Include="Assets\Scripts\CameraFollowScript.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/chris/Documents/GitHub/intro_platformer/Intro Platformer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
