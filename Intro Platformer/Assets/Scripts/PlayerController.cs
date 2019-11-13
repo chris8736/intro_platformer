@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private bool jump;
 	private bool jump2;
 	private bool shift = false;
+    private int lastDirection = 1; //-1 is left, 1 is right
 	private float lastVelocity;
 	private bool jumpReleased = false;
 	void Start()
@@ -30,10 +31,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("d") || Input.GetKey("right"))
         {
             rb.AddForce(new Vector2(1000 * Time.deltaTime, 0));
+            lastDirection = 1;
         }
         else if (Input.GetKey("a") || Input.GetKey("left"))
         {
             rb.AddForce(new Vector2(-1000 * Time.deltaTime, 0));
+            lastDirection = -1;
         }
 		else if ((rb.velocity[1]==0))
 		{
@@ -68,7 +71,8 @@ public class PlayerController : MonoBehaviour
 			shift = true;
 			jump = true;
 			rb.velocity = new Vector2(rb.velocity[0], 0);
-			rb.AddForce(new Vector2(500* Time.deltaTime, 500 * Time.deltaTime), ForceMode2D.Impulse);
+            float dashForce = 500 * Time.deltaTime;
+            rb.AddForce(new Vector2(lastDirection * dashForce, dashForce), ForceMode2D.Impulse);
 		}
 		// If you jump while hugging a wall, the player won't calibrate. This fixes that problem.
 		if ((rb.velocity[1]==0))
